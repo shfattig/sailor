@@ -42,6 +42,7 @@
 
   const initialConfig = {
     theme: theme,
+    namespace: 'RichTextComposer',
     nodes: [
       HeadingNode,
       ListNode,
