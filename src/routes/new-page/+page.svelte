@@ -1,5 +1,6 @@
 <script lang="ts">
   // Add any page-specific logic here
+  import RichTextComposer from './RichTextComposer.svelte';
 </script>
 
 <main class="container">
@@ -7,6 +8,9 @@
   <p>Welcome to the new page!</p>
   <div class="row">
     <a href="/">Back to Home</a>
+  </div>
+  <div>
+    <RichTextComposer />
   </div>
 </main>
 
@@ -44,4 +48,4 @@
       color: #24c8db;
     }
   }
-</style> 
+</style>
