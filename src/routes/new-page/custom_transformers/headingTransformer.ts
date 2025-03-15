@@ -6,6 +6,7 @@ import {
 } from "@lexical/rich-text";
 import type { ElementTransformer } from "@lexical/markdown";
 import {
+  $createTextNode,
   // $createTabNode,
   // $createTextNode,
   ElementNode,
@@ -18,9 +19,12 @@ const createBlockNode = (
 ): ElementTransformer["replace"] => {
   return (parentNode, children, match) => {
     const node = createNode(match);
+    const hashNode = $createTextNode("#".repeat(match[1].length) + " ");
+    hashNode.setStyle("color: #999");
+    node.append(hashNode);
     node.append(...children);
     parentNode.replace(node);
-    node.select(0, 0);
+    node.select(1, 1);
   };
 };
 
