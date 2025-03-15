@@ -11,42 +11,18 @@
     HorizontalRulePlugin,
     ImagePlugin,
     MarkdownShortcutPlugin,
-
     ALL_TRANSFORMERS,
-
     KeywordNode,
-
     HashtagNode,
-
     AutoLinkNode,
-
     LinkNode,
-
     CodeNode,
-
     CodeHighlightNode,
-
     LayoutContainerNode,
-
     LayoutItemNode,
-
     TableNode,
-
     TableCellNode,
-
     TableRowNode
-
-
-
-
-
-
-
-
-
-
-
-
   } from 'svelte-lexical';
   import {
     HeadingNode,
@@ -62,6 +38,7 @@
     $createTextNode as createTextNode,
     $createParagraphNode as createParagraphNode,
   } from 'svelte-lexical';
+  import {headingTransformer} from './custom_transformers/headingTransformer';
 
   const initialConfig = {
     theme: theme,
@@ -105,6 +82,10 @@
       }
     },
   };
+  export const MY_TRANSFORMERS = [
+    headingTransformer,
+    // ... ALL_TRANSFORMERS
+  ]
 </script>
 
 <Composer {initialConfig}>
@@ -116,7 +97,7 @@
           <ContentEditable />
         </div>
       </div>
-      <MarkdownShortcutPlugin transformers={ALL_TRANSFORMERS} />
+      <MarkdownShortcutPlugin transformers={MY_TRANSFORMERS} />
       <RichTextPlugin />
       <HistoryPlugin />
       <ListPlugin />
