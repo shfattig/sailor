@@ -32,9 +32,29 @@
     $getRoot as getRoot,
     $createTextNode as createTextNode,
     $createParagraphNode as createParagraphNode,
+    getEditor,
+    type LexicalEditor
   } from 'svelte-lexical';
-  import {headingTransformer} from './custom_transformers/headingTransformer';
+  import {
+    $createHeadingNode as createHeadingNode,
+  } from '@lexical/rich-text';
+  import {
+    TextNode,
+  } from 'lexical';
   import {theme} from 'svelte-lexical/dist/themes/default';
+  import {headingTransformer, heading_mut_listener, heading_transform_listener} from './custom_transformers/headingTransformer';
+  import { onMount } from 'svelte';
+
+  let editorInstance: { getEditor: () => LexicalEditor };
+
+  onMount(() => {
+      // Ensure editor is initialized
+      if (editorInstance) {
+        const editor = editorInstance.getEditor();
+        editor.registerMutationListener(HeadingNode, heading_mut_listener);
+        editor.registerNodeTransform(TextNode, heading_transform_listener);
+      }
+    });
 
   const initialConfig = {
     theme: theme,
@@ -85,7 +105,7 @@
   ]
 </script>
 
-<Composer {initialConfig}>
+<Composer bind:this={editorInstance} {initialConfig}>
   <div class="editor-shell svelte-lexical">
     <ToolbarRichText />
     <div class="editor-container">
