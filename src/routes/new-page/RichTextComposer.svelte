@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import {
     Composer,
     ContentEditable,
@@ -22,23 +22,19 @@
     LayoutItemNode,
     TableNode,
     TableCellNode,
-    TableRowNode
-  } from 'svelte-lexical';
-  import {
+    TableRowNode,
     HeadingNode,
     QuoteNode,
     ListNode,
     ListItemNode,
     HorizontalRuleNode,
     ImageNode,
-  } from 'svelte-lexical';
-  import {theme} from 'svelte-lexical/dist/themes/default';
-  import {
     $getRoot as getRoot,
     $createTextNode as createTextNode,
     $createParagraphNode as createParagraphNode,
   } from 'svelte-lexical';
   import {headingTransformer} from './custom_transformers/headingTransformer';
+  import {theme} from 'svelte-lexical/dist/themes/default';
 
   const initialConfig = {
     theme: theme,
