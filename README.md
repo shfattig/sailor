@@ -85,4 +85,4 @@ Task-Note Integration:
 ## Contributing
 
 ## License
-to kill (coming soon)
+MIT
