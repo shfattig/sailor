@@ -1,4 +1,4 @@
-![Sailor Logo](https://raw.githubusercontent.com/sailor-app/sailor/main/assets/logo.png)
+![Sailor Logo](assets/logo.png)
 
 > ⚠️ **Warning**: This project is in active development and may undergo frequent breaking changes. The API, features, and functionality are not yet stable and may change significantly between versions. Please use with caution in production environments.
 
