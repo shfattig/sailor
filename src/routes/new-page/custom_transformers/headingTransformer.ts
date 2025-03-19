@@ -6,13 +6,31 @@ import {
 } from "@lexical/rich-text";
 import type { ElementTransformer } from "@lexical/markdown";
 import {
+  $getRoot as getRoot,
   $createTextNode,
-  // $createTabNode,
-  // $createTextNode,
+  type MutationListener,
   ElementNode,
   TextNode,
   type LexicalNode,
+  type EditorState,
+  type NodeKey,
+  type NodeMutation,
+  type LexicalEditor,
+  type RangeSelection,
 } from "lexical";
+
+export const heading_mut_listener: MutationListener = (
+  nodes: Map<NodeKey, NodeMutation>,
+  payload: {
+    updateTags: Set<string>;
+    dirtyLeaves: Set<string>;
+    prevEditorState: EditorState;
+  },
+) => {
+  console.log("mutation!!");
+  console.log(nodes);
+  console.log(payload);
+};
 
 const createBlockNode = (
   createNode: (match: Array<string>) => ElementNode,
