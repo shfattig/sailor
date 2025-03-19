@@ -97,23 +97,6 @@ export const headingTransformer: ElementTransformer = {
   replace: createBlockNode((match) => {
     const tag = ("h" + match[1].length) as HeadingTagType;
     return $createHeadingNode(tag);
-    // replace: (parentNode: ElementNode, textNode: TextNode, match: RegExpExecArray) => {
-    // const matchResult = match.exec(textNode.getTextContent());
-    // if (match) {
-    //   const hashes = match[1];
-    //   const content = match[2];
-    //   const tag = `h${level}` as HeadingTagType;
-
-    //   const headingNode = $createHeadingNode(tag);
-    //   const hashNode = $createTextNode(hashes);
-    //   hashNode.setStyle("color: #999");
-
-    //   headingNode.append(hashNode);
-    //   headingNode.append($createTextNode(content));
-    //   parentNode.append(headingNode);
-    //   return true;
-    // }
-    // return false;
   }),
   type: "element",
 };
