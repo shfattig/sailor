@@ -19,6 +19,44 @@ import {
   type RangeSelection,
 } from "lexical";
 
+export const heading_transform_listener = (textNode: TextNode) => {
+  // keep heading tag in sync with number of hashes in header
+  const parent = textNode.getParent();
+  const text = textNode.getTextContent();
+  console.log("heading text:", text);
+
+  // count the number of hashes at the beginning of the text
+  let hashCount = 0;
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] === "#") {
+      hashCount++;
+    } else {
+      break;
+    }
+  }
+  console.log("hashes:", hashCount);
+
+  // only run if the parent is a heading node and the hash count is between 1 and 6 and the tag is not already set
+  const newTag = `h${hashCount}` as HeadingTagType;
+  if (
+    $isHeadingNode(parent) &&
+    hashCount > 0 &&
+    hashCount <= 6 &&
+    parent.getTag() !== newTag
+  ) {
+    console.log(parent.getTag(), "setting tag to:", newTag);
+
+    // create a new heading node with the correct tag
+    const node = $createHeadingNode(newTag);
+    // append all the children of the parent node to the new node
+    node.append(...parent.getChildren());
+    // replace the parent node with the new node
+    parent.replace(node);
+    // Set selection to the new node
+    node.select(1, 1);
+  }
+};
+
 export const heading_mut_listener: MutationListener = (
   nodes: Map<NodeKey, NodeMutation>,
   payload: {
