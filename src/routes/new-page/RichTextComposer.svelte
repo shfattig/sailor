@@ -44,6 +44,7 @@
   import {theme} from 'svelte-lexical/dist/themes/default';
   import {headingTransformer, heading_mut_listener, heading_transform_listener} from './custom_transformers/headingTransformer';
   import { onMount } from 'svelte';
+  import { checkboxTransformer } from './custom_transformers/taskTransformer';
 
   let editorInstance: { getEditor: () => LexicalEditor };
 
@@ -101,6 +102,7 @@
   };
   export const MY_TRANSFORMERS = [
     headingTransformer,
+    checkboxTransformer,
     // ... ALL_TRANSFORMERS
   ]
 </script>
