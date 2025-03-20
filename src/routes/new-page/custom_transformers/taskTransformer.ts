@@ -11,7 +11,7 @@ import {
 } from "@lexical/list";
 import { ElementNode } from "lexical";
 
-const CHECK_LIST_REGEX = /^(\s*)(?:-\s)?\s?(\[(\s|x)?\])\s/i;
+const CHECK_LIST_REGEX = /^(\s*)(?:\*\s)?\s?(\[(\s|x)?\])\s/i;
 const LIST_INDENT_SIZE = 2;
 
 const listReplace = (listType: ListType): ElementTransformer["replace"] => {
@@ -86,8 +86,8 @@ const listExport = (
         listType === "number"
           ? `${listNode.getStart() + index}. `
           : listType === "check"
-            ? `- [${listItemNode.getChecked() ? "x" : " "}] `
-            : "- ";
+            ? `* [${listItemNode.getChecked() ? "x" : " "}] `
+            : "* ";
       output.push(indent + prefix + exportChildren(listItemNode));
       index++;
     }
