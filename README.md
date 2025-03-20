@@ -20,7 +20,6 @@ I work in a terminal most of the day, and I've enjoyed using tools like vimwiki,
 - Notes and tasks together, where tasks can be created _inside notes_ arbitrarily, and the original context for a task can be easily referenced and linked to.
 - Local-first, plain text format, so that I can sync across devices using SyncThing (or optionally some other cloud service)
 - Cross-platform
-And for what it's worth, I think it's very possible! Read on for the architectural vision.
 
 ## Architectural Proof
 - Build on top of unix philosophy tools:
