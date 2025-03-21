@@ -46,6 +46,7 @@
   import { onMount } from 'svelte';
   import { taskTransformer } from './custom_transformers/taskTransformer';
   import { TaskListItemNode } from './custom_transformers/taskItemNode';
+    import { invoke } from '@tauri-apps/api/core';
 
   let editorInstance: { getEditor: () => LexicalEditor };
 
@@ -61,6 +62,9 @@
         });
       }
     });
+
+  const tasks = invoke('get_all_tasks');
+  console.log('tasks', tasks);
 
   const initialConfig = {
     theme: theme,
