@@ -44,7 +44,8 @@
   import {theme} from 'svelte-lexical/dist/themes/default';
   import {headingTransformer, heading_mut_listener, heading_transform_listener} from './custom_transformers/headingTransformer';
   import { onMount } from 'svelte';
-  import { checkboxTransformer } from './custom_transformers/taskTransformer';
+  import { taskTransformer } from './custom_transformers/taskTransformer';
+  import { TaskListItemNode } from './custom_transformers/taskItemNode';
 
   let editorInstance: { getEditor: () => LexicalEditor };
 
@@ -54,6 +55,10 @@
         const editor = editorInstance.getEditor();
         editor.registerMutationListener(HeadingNode, heading_mut_listener);
         editor.registerNodeTransform(TextNode, heading_transform_listener);
+        editor.registerUpdateListener(({ editorState }) => {
+          console.log('Editor State:', editorState);
+          // console.log('Editor Debug:', editorState._debug());
+        });
       }
     });
 
@@ -61,6 +66,7 @@
     theme: theme,
     namespace: 'RichTextComposer',
     nodes: [
+      TaskListItemNode,
       HeadingNode,
       ListNode,
       ListItemNode,
@@ -102,7 +108,7 @@
   };
   export const MY_TRANSFORMERS = [
     headingTransformer,
-    checkboxTransformer,
+    taskTransformer,
     // ... ALL_TRANSFORMERS
   ]
 </script>
