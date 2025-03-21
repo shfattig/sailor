@@ -23,7 +23,6 @@ export const heading_transform_listener = (textNode: TextNode) => {
   // keep heading tag in sync with number of hashes in header
   const parent = textNode.getParent();
   const text = textNode.getTextContent();
-  console.log("heading text:", text);
 
   // count the number of hashes at the beginning of the text
   let hashCount = 0;
@@ -34,7 +33,6 @@ export const heading_transform_listener = (textNode: TextNode) => {
       break;
     }
   }
-  console.log("hashes:", hashCount);
 
   // only run if the parent is a heading node and the hash count is between 1 and 6 and the tag is not already set
   const newTag = `h${hashCount}` as HeadingTagType;
@@ -44,8 +42,6 @@ export const heading_transform_listener = (textNode: TextNode) => {
     hashCount <= 6 &&
     parent.getTag() !== newTag
   ) {
-    console.log(parent.getTag(), "setting tag to:", newTag);
-
     // create a new heading node with the correct tag
     const node = $createHeadingNode(newTag);
     // append all the children of the parent node to the new node
@@ -65,9 +61,7 @@ export const heading_mut_listener: MutationListener = (
     prevEditorState: EditorState;
   },
 ) => {
-  console.log("mutation!!");
-  console.log(nodes);
-  console.log(payload);
+  console.log("nodes", nodes);
 };
 
 const createBlockNode = (
