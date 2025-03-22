@@ -31,6 +31,10 @@
     <a href="/new-page" class="nav-link">Go to New Page</a>
   </div>
 
+  <div class="row">
+    <a href="/task_list" class="nav-link">View Task List</a>
+  </div>
+
   <form class="row" onsubmit={greet}>
     <input id="greet-input" placeholder="Enter a name..." bind:value={name} />
     <button type="submit">Greet</button>
