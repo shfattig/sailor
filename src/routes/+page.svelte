@@ -2,7 +2,7 @@
 </script>
 
 <main class="container">
-  <h1>Sailor</h1>
+  <img src="/logo.png" alt="Sailor Logo" class="logo" />
 
   <div class="row">
     <a href="/new-page" class="nav-link">New Note</a>
@@ -45,6 +45,8 @@
   will-change: filter;
   transition: 0.75s;
   filter: drop-shadow(0 0 2em #747bff);
+  object-fit: contain;
+  width: auto;
 }
 
 .row {
