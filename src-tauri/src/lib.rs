@@ -43,7 +43,7 @@ where
 #[derive(Serialize, Deserialize, Debug)]
 struct Task {
     id: String,
-    content: String,
+    description: String,
     due_date: Option<String>,
 }
 
@@ -75,13 +75,20 @@ fn create_task(description: &str) -> Result<String, String> {
 }
 
 #[tauri::command]
-fn get_all_tasks() -> Result<Vec<String>, String> {
+fn get_all_tasks() -> Result<Vec<Task>, String> {
     with_replica(|replica| {
         let task_uuids = replica.all_task_uuids().map_err(|e| e.to_string())?;
-        Ok(task_uuids
+        let tasks = task_uuids
             .into_iter()
-            .map(|uuid| uuid.to_string())
-            .collect())
+            .filter_map(|uuid| {
+                replica.get_task(uuid).ok().map(|task| Task {
+                    id: uuid.to_string(),
+                    description: task.as_ref().unwrap().get_description().to_string(),
+                    due_date: task.as_ref().unwrap().get_due().map(|d| d.to_rfc3339()),
+                })
+            })
+            .collect();
+        Ok(tasks)
     })
 }
 
