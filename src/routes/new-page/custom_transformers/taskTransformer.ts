@@ -16,7 +16,7 @@ import {
   TaskListItemNode,
 } from "./taskItemNode";
 
-const TASK_LIST_REGEX = /^(\s*)(?:\*\s)?\s?(\[(\s|x)?\])\s/i;
+const TASK_LIST_REGEX = /^(\s*)(?:\*\s)?\s?(\[(\s|x)?\])\s(.*?)(?:\s(?:#)(\w+))?$/i;
 const LIST_INDENT_SIZE = 2;
 
 export const taskTransformer: ElementTransformer = {
@@ -29,9 +29,8 @@ export const taskTransformer: ElementTransformer = {
       .map((child) => {
         if ($isTaskListItemNode(child)) {
           const content = exportChildren(child);
-          const date = child.getDueDate();
-          console.log("date", date);
-          return `* [ ] ${content}${date ? ` @${date}` : ""}`;
+          const taskId = child.getTaskID();
+          return `* [ ] ${content}${taskId ? ` #${taskId}` : ""}`;
         }
         return null;
       })
@@ -39,10 +38,9 @@ export const taskTransformer: ElementTransformer = {
   },
   regExp: TASK_LIST_REGEX,
   replace: (parentNode, children, match) => {
-    const [, checked, content] = match;
-    const date = "2025-10-04";
+    const [, whitespace, checkboxGroup, checkState, content, taskId] = match;
     const listNode = $createListNode("check");
-    const listItemNode = $createTaskListItemNode(date || null);
+    const listItemNode = $createTaskListItemNode(taskId || null);
 
     // Add content to list item
     listItemNode.append(...children);
