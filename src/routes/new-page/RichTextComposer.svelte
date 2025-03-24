@@ -66,8 +66,7 @@
         editor.registerMutationListener(HeadingNode, heading_mut_listener);
         editor.registerNodeTransform(TextNode, heading_transform_listener);
         editor.registerUpdateListener(({ editorState }) => {
-          console.log('Editor State:', editorState._nodeMap);
-          // console.log('Editor Debug:', editorState._debug());
+          console.log("Editor State:", editorState._nodeMap);
         });
       }
     });
@@ -110,18 +109,18 @@
         listNode.append(taskNode);
         root.append(listNode);
 
-        const paragraph = createParagraphNode();
-        paragraph.append(
-          createTextNode('This demo environment is built with '),
-          createTextNode('svelte-lexical').toggleFormat('code'),
-          createTextNode('.'),
-          createTextNode(' Try typing in '),
-          createTextNode('some text').toggleFormat('bold'),
-          createTextNode(' with '),
-          createTextNode('different').toggleFormat('italic'),
-          createTextNode(' formats.'),
-        );
-        root.append(paragraph);
+        // const paragraph = createParagraphNode();
+        // paragraph.append(
+        //   createTextNode('This demo environment is built with '),
+        //   createTextNode('svelte-lexical').toggleFormat('code'),
+        //   createTextNode('.'),
+        //   createTextNode(' Try typing in '),
+        //   createTextNode('some text').toggleFormat('bold'),
+        //   createTextNode(' with '),
+        //   createTextNode('different').toggleFormat('italic'),
+        //   createTextNode(' formats.'),
+        // );
+        // root.append(paragraph);
       }
     },
   };
