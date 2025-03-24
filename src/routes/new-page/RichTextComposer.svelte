@@ -45,8 +45,12 @@
   import {headingTransformer, heading_mut_listener, heading_transform_listener} from './custom_transformers/headingTransformer';
   import { onMount } from 'svelte';
   import { taskTransformer } from './custom_transformers/taskTransformer';
-  import { TaskListItemNode } from './custom_transformers/taskItemNode';
-    import { invoke } from '@tauri-apps/api/core';
+  import { TaskListItemNode, $createTaskListItemNode as createTaskListItemNode } from './custom_transformers/taskItemNode';
+  import { invoke } from '@tauri-apps/api/core';
+
+  interface Task {
+    id: string;
+  }
 
   let editorInstance: { getEditor: () => LexicalEditor };
 
@@ -89,7 +93,7 @@
       TableCellNode,
       TableRowNode,
     ],
-    onError: (error) => {
+    onError: (error: Error) => {
       throw error;
     },
     editorState: () => {
