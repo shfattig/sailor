@@ -32,6 +32,7 @@
     $getRoot as getRoot,
     $createTextNode as createTextNode,
     $createParagraphNode as createParagraphNode,
+    $createListNode as createListNode,
     getEditor,
     type LexicalEditor
   } from 'svelte-lexical';
@@ -47,6 +48,7 @@
   import { taskTransformer } from './custom_transformers/taskTransformer';
   import { TaskListItemNode, $createTaskListItemNode as createTaskListItemNode } from './custom_transformers/taskItemNode';
   import { invoke } from '@tauri-apps/api/core';
+  import type { ListType } from '@lexical/list';
 
   interface Task {
     id: string;
@@ -61,7 +63,7 @@
         editor.registerMutationListener(HeadingNode, heading_mut_listener);
         editor.registerNodeTransform(TextNode, heading_transform_listener);
         editor.registerUpdateListener(({ editorState }) => {
-          console.log('Editor State:', editorState);
+          console.log('Editor State:', editorState._nodeMap);
           // console.log('Editor Debug:', editorState._debug());
         });
       }
@@ -99,6 +101,12 @@
     editorState: () => {
       const root = getRoot();
       if (root.getFirstChild() === null) {
+        const listNode = createListNode("check" as ListType);
+        const taskNode = createTaskListItemNode(null);
+        taskNode.setChecked(false);
+        listNode.append(taskNode);
+        root.append(listNode);
+
         const paragraph = createParagraphNode();
         paragraph.append(
           createTextNode('This demo environment is built with '),
