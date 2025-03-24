@@ -46,7 +46,7 @@
     TextNode,
   } from 'lexical';
   import {theme} from 'svelte-lexical/dist/themes/default';
-  import {headingTransformer, heading_mut_listener, heading_transform_listener} from './custom_transformers/headingTransformer';
+  import {headingTransformer, heading_mut_listener, heading_transform_listener} from '../../transformers/headingTransformer';
   import { onMount } from 'svelte';
   import { taskTransformer } from './custom_transformers/taskTransformer';
   import { TaskListItemNode, $createTaskListItemNode as createTaskListItemNode } from './custom_transformers/taskItemNode';
