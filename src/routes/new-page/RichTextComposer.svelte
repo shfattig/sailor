@@ -34,7 +34,10 @@
     $createParagraphNode as createParagraphNode,
     $createListNode as createListNode,
     getEditor,
-    type LexicalEditor
+    type LexicalEditor,
+
+    UNORDERED_LIST
+
   } from 'svelte-lexical';
   import {
     $createHeadingNode as createHeadingNode,
@@ -125,6 +128,7 @@
   export const MY_TRANSFORMERS = [
     headingTransformer,
     taskTransformer,
+    UNORDERED_LIST,
     // ... ALL_TRANSFORMERS
   ]
 </script>
