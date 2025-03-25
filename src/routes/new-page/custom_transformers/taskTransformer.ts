@@ -9,14 +9,17 @@ import {
   $isListItemNode,
   $createListNode,
 } from "@lexical/list";
-import { ElementNode } from "lexical";
+import { ElementNode, type LexicalNode } from "lexical";
 import {
   $isTaskListItemNode,
   $createTaskListItemNode,
   TaskListItemNode,
 } from "./taskItemNode";
 
-const TASK_LIST_REGEX = /^(\s*)(?:\*\s)?\s?(\[(\s|x)?\])\s(.*?)(?:\s(?:#)(\w+))?$/i;
+import { $createDateNode } from "./DateNode";
+
+const TASK_LIST_REGEX =
+  /^(\s*)(?:\*\s)?\s?(\[(\s|x)?\])\s(.*?)(?:\s(?:#)(\w+))?$/i;
 const LIST_INDENT_SIZE = 2;
 
 export const taskTransformer: ElementTransformer = {
@@ -44,8 +47,10 @@ export const taskTransformer: ElementTransformer = {
 
     // Add content to list item
     listItemNode.append(...children);
+    listItemNode.append($createDateNode(1));
     listNode.append(listItemNode);
     parentNode.replace(listNode);
+    listNode.select(0, 0);
   },
   type: "element",
 };
