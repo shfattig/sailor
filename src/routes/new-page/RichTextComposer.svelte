@@ -131,7 +131,6 @@
 
 <Composer bind:this={editorInstance} {initialConfig}>
   <div class="editor-shell svelte-lexical">
-    <ToolbarRichText />
     <div class="editor-container">
       <div class="editor-scroller">
         <div class="editor">
@@ -145,8 +144,6 @@
       <CheckListPlugin />
       <HorizontalRulePlugin />
       <ImagePlugin />
-
-      <ActionBar />
     </div>
   </div>
 </Composer>
