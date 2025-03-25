@@ -52,6 +52,7 @@
   import { TaskListItemNode, $createTaskListItemNode as createTaskListItemNode } from './custom_transformers/taskItemNode';
   import { invoke } from '@tauri-apps/api/core';
   import type { ListType } from '@lexical/list';
+    import { DateNode } from './custom_transformers/DateNode';
 
   interface Task {
     id: string;
@@ -79,6 +80,7 @@
     namespace: 'RichTextComposer',
     nodes: [
       TaskListItemNode,
+      DateNode,
       HeadingNode,
       ListNode,
       ListItemNode,
