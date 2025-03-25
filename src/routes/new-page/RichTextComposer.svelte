@@ -124,7 +124,7 @@
   export const MY_TRANSFORMERS = [
     headingTransformer,
     taskTransformer,
-    UNORDERED_LIST,
+    // UNORDERED_LIST,
     // ... ALL_TRANSFORMERS
   ]
 </script>
