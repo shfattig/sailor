@@ -105,11 +105,6 @@
     editorState: () => {
       const root = getRoot();
       if (root.getFirstChild() === null) {
-        const listNode = createListNode("check" as ListType);
-        const taskNode = createTaskListItemNode(null);
-        taskNode.setChecked(false);
-        listNode.append(taskNode);
-        root.append(listNode);
 
         // const paragraph = createParagraphNode();
         // paragraph.append(
