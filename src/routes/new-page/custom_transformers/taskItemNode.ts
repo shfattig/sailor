@@ -60,14 +60,6 @@ export class TaskListItemNode extends ListItemNode {
 
   createDOM(config: EditorConfig): HTMLElement {
     const listItemDOM = super.createDOM(config);
-    const date_input = document.createElement("input");
-    date_input.type = "date";
-    date_input.value = this.__taskID || "";
-    // TODO: edit to retrieve taskID from backend
-    // date_input.addEventListener("change", (event) => {
-    //   this.setTaskID((event.target as HTMLInputElement).value);
-    // });
-    listItemDOM.append(date_input);
     listItemDOM.setAttribute("data-type", "task-list-item");
     return listItemDOM;
   }
