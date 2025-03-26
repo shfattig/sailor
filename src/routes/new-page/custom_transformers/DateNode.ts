@@ -85,6 +85,6 @@ export class DateNode extends DecoratorNode<HTMLElement> {
   }
 }
 
-export function $createDateNode(taskID: string | null): DateNode {
-  return new DateNode("2024-10-04");
+export function $createDateNode(dueDate: string | null): DateNode {
+  return new DateNode(dueDate);
 }
