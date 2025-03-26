@@ -1,8 +1,8 @@
+> ⚠️ **Warning**: This project is in active development and may undergo frequent breaking changes. The API, features, and functionality are not yet stable and may change significantly between versions. Please use with caution in production environments.
+
 <div align="center">
     <img src="assets/logo.png" alt="Sailor Logo" height="200">
 </div>
-
-> ⚠️ **Warning**: This project is in active development and may undergo frequent breaking changes. The API, features, and functionality are not yet stable and may change significantly between versions. Please use with caution in production environments.
 
 # Sailor
 ## Features
