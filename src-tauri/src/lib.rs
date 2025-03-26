@@ -85,7 +85,7 @@ fn get_all_tasks() -> Result<Vec<Task>, String> {
                 replica.get_task(uuid).ok().map(|task| Task {
                     id: uuid.to_string(),
                     description: task.as_ref().unwrap().get_description().to_string(),
-                    due_date: task.as_ref().unwrap().get_due().map(|d| d.to_rfc3339()),
+                    due_date: task.as_ref().unwrap().get_due().map(|d| d.format("%Y-%m-%d").to_string()),
                     done: task.as_ref().unwrap().get_status() == Status::Completed,
                 })
             })
