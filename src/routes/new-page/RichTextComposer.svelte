@@ -57,6 +57,8 @@
 
   interface Task {
     id: string;
+    description: string;
+    due_date?: string;
   }
 
   let editorInstance: { getEditor: () => LexicalEditor };
