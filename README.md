@@ -46,7 +46,7 @@ I work in a terminal most of the day, and I've enjoyed using tools like vimwiki,
 ## Roadmap
 - Proof of concept:
   - [x] editor proof of concept
-  - [ ] taskwarrior backend proof of concept
+  - [X] taskwarrior backend proof of concept
   - [ ] zk backend proof of concept
   - [ ] mobile proof of concept
 - Editor / UI/UX:
