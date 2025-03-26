@@ -6,7 +6,6 @@
 
 Plain-text markdown editor integrating tasks as a first-class citizen.
 
-# Sailor
 ## Features
 - Notes and Tasks in a single environment
 - Include Zettelkasten note context alongside your task list
