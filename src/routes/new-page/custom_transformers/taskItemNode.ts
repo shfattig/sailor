@@ -1,4 +1,4 @@
-import { ListItemNode } from "@lexical/list";
+import { ListItemNode, type SerializedListItemNode } from "@lexical/list";
 import TaskListItem from "./TaskListItem.svelte";
 import {
   type EditorConfig,
@@ -7,6 +7,10 @@ import {
   type SerializedElementNode,
 } from "lexical";
 import { invoke } from "@tauri-apps/api/core";
+
+type SerializedTaskListItemNode = SerializedListItemNode & {
+  taskID: string | null;
+};
 
 export class TaskListItemNode extends ListItemNode {
   __taskID: string | null;
@@ -43,7 +47,7 @@ export class TaskListItemNode extends ListItemNode {
     return this.__taskID;
   }
 
-  exportJSON(): SerializedElementNode & { taskID: string | null } {
+  exportJSON(): SerializedTaskListItemNode {
     return {
       ...super.exportJSON(),
       taskID: this.__taskID,
@@ -53,7 +57,7 @@ export class TaskListItemNode extends ListItemNode {
   }
 
   static importJSON(
-    serializedNode: SerializedElementNode & { taskID: string | null },
+    serializedNode: SerializedTaskListItemNode
   ): TaskListItemNode {
     return $createTaskListItemNode(serializedNode.taskID);
   }
