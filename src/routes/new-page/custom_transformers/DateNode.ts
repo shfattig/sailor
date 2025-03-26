@@ -1,10 +1,11 @@
 import { type EditorConfig, type SerializedLexicalNode, DecoratorNode } from "lexical";
+import DateNodeComponent from "./DateNode.svelte";
 
 type SerializedDateNode = SerializedLexicalNode & {
   date: string | null;
 };
 
-export class DateNode extends DecoratorNode<HTMLElement> {
+export class DateNode extends DecoratorNode {
   __date: string | null;
 
   static getType(): string {
@@ -48,13 +49,11 @@ export class DateNode extends DecoratorNode<HTMLElement> {
     return false;
   }
 
-  decorate(): HTMLInputElement {
-    const element = this.createDOM();
-    element.addEventListener("change", (event) => {
-      const newValue = (event.target as HTMLInputElement).value;
-      element.dispatchEvent(new CustomEvent('date-change', { detail: newValue }));
-    });
-    return element;
+  decorate() {
+    return {
+      componentClass: DateNodeComponent,
+      updateProps: (props) => {props.node = this},
+    };
   }
 
   static importJSON(serializedNode: SerializedDateNode): DateNode {
