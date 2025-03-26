@@ -47,13 +47,14 @@
     TextNode,
   } from 'lexical';
   import {theme} from 'svelte-lexical/dist/themes/default';
-  import {headingTransformer, heading_mut_listener, heading_transform_listener} from '../../transformers/headingTransformer';
-  import { onMount } from 'svelte';
+  import { headingTransformer, heading_mut_listener, heading_transform_listener } from '../../transformers/headingTransformer';
+  import { mount, onMount } from 'svelte';
+  import { writable } from 'svelte/store';
   import { taskTransformer } from './custom_transformers/taskTransformer';
   import { TaskListItemNode, $createTaskListItemNode as createTaskListItemNode } from './custom_transformers/taskItemNode';
   import { invoke } from '@tauri-apps/api/core';
   import type { ListType } from '@lexical/list';
-    import { DateNode } from './custom_transformers/DateNode';
+  import { DateNode, $createDateNode as createDateNode } from './custom_transformers/DateNode';
 
   interface Task {
     id: string;
@@ -64,17 +65,26 @@
   let editorInstance: { getEditor: () => LexicalEditor };
   const tasks = writable<Task[]>([]);
 
-  onMount(() => {
-      // Ensure editor is initialized
-      if (editorInstance) {
-        const editor = editorInstance.getEditor();
-        editor.registerMutationListener(HeadingNode, heading_mut_listener);
-        editor.registerNodeTransform(TextNode, heading_transform_listener);
-        editor.registerUpdateListener(({ editorState }) => {
-          console.log("Editor State:", editorState._nodeMap);
+  $: if ($tasks.length > 0 && editorInstance) {
+    const editor = editorInstance.getEditor();
+    editor.update(() => {
+      const root = getRoot();
+      const firstChild = root.getFirstChild();
+      if (!firstChild) {
+        const listNode = createListNode("check");
+        $tasks.forEach((task: Task) => {
+          console.log("task", task);
+          const listItemNode = createTaskListItemNode(task.id);
+          listItemNode.append(createTextNode(task.description));
+          if (task.due_date) {
+            listItemNode.append(createDateNode(task.due_date));
+          }
+          listNode.append(listItemNode);
         });
+        root.append(listNode);
       }
     });
+  }
 
   onMount(async () => {
     const loadedTasks = await invoke('get_all_tasks') as Task[];
