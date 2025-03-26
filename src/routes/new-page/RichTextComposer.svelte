@@ -1,5 +1,6 @@
 <script lang="ts">
   import {
+    TreeViewPlugin,
     Composer,
     ContentEditable,
     ToolbarRichText,
@@ -144,6 +145,7 @@
       <CheckListPlugin />
       <HorizontalRulePlugin />
       <ImagePlugin />
+      <TreeViewPlugin />
     </div>
   </div>
 </Composer>
