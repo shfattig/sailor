@@ -32,13 +32,9 @@ export class DateNode extends DecoratorNode<HTMLElement> {
     this.__date = date;
   }
 
-  createDOM(config: EditorConfig): HTMLElement {
-    const dom = document.createElement("input");
-    dom.type = "date";
-    if (this.__date) {
-      dom.value = this.__date;
-    }
-    dom.classList.add("date-node");
+  createDOM(config: EditorConfig): HTMLInputElement {
+    const dom = document.createElement("div");
+    dom.id =  `{this.__key}-container`
     return dom;
   }
 
