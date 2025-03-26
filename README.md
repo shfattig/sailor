@@ -2,12 +2,6 @@
     <img src="assets/logo.png" alt="Sailor Logo" height="200">
 </div>
 
-<div align="center">
-    <img src="assets/screenshots/title_page.png" alt="Title page" height="200" style="margin: 10px;">
-    <img src="assets/screenshots/note_with_tasks.png" alt="Create and manage tasks directly within your notes" height="200" style="margin: 10px;">
-    <img src="assets/screenshots/tasklist_with_tasks.png" alt="View and organize all your tasks in one place" height="200" style="margin: 10px;">
-</div>
-
 > ⚠️ **Warning**: This project is in active development and may undergo frequent breaking changes. The API, features, and functionality are not yet stable and may change significantly between versions. Please use with caution in production environments.
 
 # Sailor
@@ -20,6 +14,13 @@
 - Tauri is cool
 - Svelte is cool
 - In Rust We Trust
+
+## Screenshots
+<div align="center">
+    <img src="assets/screenshots/title_page.png" alt="Title page" height="200" style="margin: 10px;">
+    <img src="assets/screenshots/note_with_tasks.png" alt="Create and manage tasks directly within your notes" height="200" style="margin: 10px;">
+    <img src="assets/screenshots/tasklist_with_tasks.png" alt="View and organize all your tasks in one place" height="200" style="margin: 10px;">
+</div>
 
 ## Motivation
 I work in a terminal most of the day, and I've enjoyed using tools like vimwiki, taskwarrior, and taskwiki to take notes, plan, brainstorm, and track any related (or unrelated) tasks. I find it especially helpful that I can record any tasks alongside all of my markdown notes, and they will be beautifully synced to my taskwarrior tasklist. Preserving the context is so important! I also like the simplicity and portability of plain text formats where a simple service like SyncThing can seamlessly sync data across multiple devices (for free!). However, when I leave work and want to access my data on mobile, I have no easy way of doing that. I've tried combinations of Obsidian, Acreom, Todoist, and TaskWarrior (mobile)... unfortunately none of them combine notes and tasks quite like taskwiki, and if I want to keep using taskwarrior on terminal, doing integration and sync is at best a complicated effort. I want to satisfy all 3 conditions in a single application:
