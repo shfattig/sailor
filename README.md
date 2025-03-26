@@ -4,6 +4,8 @@
     <img src="assets/logo.png" alt="Sailor Logo" height="200">
 </div>
 
+Plain-text markdown editor integrating tasks as a first-class citizen.
+
 # Sailor
 ## Features
 - Notes and Tasks in a single environment
