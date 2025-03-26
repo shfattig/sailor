@@ -1,16 +1,13 @@
 <script lang="ts">
-  // Add any page-specific logic here
   import RichTextComposer from './RichTextComposer.svelte';
 </script>
 
 <main class="container">
-  <h1>New Page</h1>
-  <p>Welcome to the new page!</p>
-  <div class="row">
-    <a href="/">Back to Home</a>
-  </div>
   <div>
     <RichTextComposer />
+  </div>
+  <div class="row">
+    <a href="/">Back to Home</a>
   </div>
 </main>
 
