@@ -2,6 +2,12 @@
     <img src="assets/logo.png" alt="Sailor Logo" height="200">
 </div>
 
+<div align="center">
+    <img src="assets/screenshots/title_page.png" alt="Title page" height="200" style="margin: 10px;">
+    <img src="assets/screenshots/note_with_tasks.png" alt="Create and manage tasks directly within your notes" height="200" style="margin: 10px;">
+    <img src="assets/screenshots/tasklist_with_tasks.png" alt="View and organize all your tasks in one place" height="200" style="margin: 10px;">
+</div>
+
 > ⚠️ **Warning**: This project is in active development and may undergo frequent breaking changes. The API, features, and functionality are not yet stable and may change significantly between versions. Please use with caution in production environments.
 
 # Sailor
