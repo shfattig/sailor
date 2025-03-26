@@ -62,6 +62,7 @@
   }
 
   let editorInstance: { getEditor: () => LexicalEditor };
+  const tasks = writable<Task[]>([]);
 
   onMount(() => {
       // Ensure editor is initialized
@@ -75,8 +76,26 @@
       }
     });
 
-  const tasks = invoke('get_all_tasks');
-  console.log('tasks', tasks);
+  onMount(async () => {
+    const loadedTasks = await invoke('get_all_tasks') as Task[];
+    tasks.set(loadedTasks);
+    
+    if (editorInstance) {
+      const editor = editorInstance.getEditor();
+      editor.registerDecoratorListener((decorators) => {
+        Object.entries(decorators).forEach(([nodeId, decorator]) => {
+          const node = editor.getEditorState()._nodeMap.get(nodeId);
+          if (!node) return;
+          const typedDecorator = decorator as { componentClass: any, updateProps: (props: any) => void };
+          const props = {};
+          typedDecorator.updateProps(props);
+          const domElement = (node as any).__dom;
+          if (!domElement) return;
+          mount(typedDecorator.componentClass, { target: document.getElementById(`${node.__key}-container`) as HTMLElement, props: {duh: "nah"} });
+        });
+      });
+    }
+  });
 
   const initialConfig = {
     theme: theme,
