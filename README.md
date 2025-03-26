@@ -3,6 +3,7 @@
 <div align="center">
     <img src="assets/logo.png" alt="Sailor Logo" height="200">
 </div>
+<br>
 
 Plain-text markdown editor integrating tasks as a first-class citizen.
 
